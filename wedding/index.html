@@ -291,6 +291,7 @@ Kami mohon do'a & restunya atas pernikahan kami
     </div>
     <div class="text-center mt-10 mb-10" id="schedule-list">
                                                 <div class="mb-7" data-aos="fade-up">
+                <div id="akad">
                 <div class="fw-bolder fs-4 schedule-name text-size-content">Akad Nikah</div>
                 <div class="schedule-date text-primary fs-8 text-size-caption">Minggu, 01 Desember 2024</div>
                 <div class="schedule-time text-secondary fs-8 text-size-caption">08:00 - 10:00 WIB</div>
@@ -300,6 +301,8 @@ Kami mohon do'a & restunya atas pernikahan kami
                                 <a class="btn btn-sm btn-primary mt-1 text-size-caption" href="https://maps.app.goo.gl/Dhym5MrmAGv1h7Ms5" target="_blank"><span class="fas fa-route"></span> Navigasi Map</a>
                             </div>
                                                                     <div class="mb-7" data-aos="fade-up">
+                </div>
+
                 <div class="fw-bolder fs-4 schedule-name text-size-content">Resepsi</div>
                 <div class="schedule-date text-primary fs-8 text-size-caption">Minggu, 01 Desember 2024</div>
                 <div class="schedule-time text-secondary fs-8 text-size-caption">11:00 - 14:00 WIB</div>
@@ -1060,6 +1063,19 @@ Kami mohon do'a & restunya atas pernikahan kami
         </script>
                         <!-- Global site tag (gtag.js) - Google Analytics -->
 <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-14K2D9YSV5"></script>-->
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const inviteType = params.get('invite_type'); 
+    console.log('Invite Type:', inviteType);
+    document.addEventListener('DOMContentLoaded', () => {
+        if (inviteType === 'kawinan') {
+            const akadDiv = document.getElementById('akad');
+            if (akadDiv) {
+                akadDiv.style.display = 'none';
+            }
+        }
+    });
+</script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
 window.dataLayer = window.dataLayer || [];

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawinan Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none; 
+        }
+    </style>
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (!params.has("param") || params.get("param") !== "6d9f63a0c1b74593b74d9eb580e0b7e4") {
+                window.location.replace("/wedding/");
+            }
+        })();
+    </script>
+</head>
+<body>
+    <iframe src="/wedding/index.html?invite_type=kawinan"></iframe>
+</body>
+</html>
