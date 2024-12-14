@@ -1011,10 +1011,9 @@ gtag('config', 'G-14K2D9YSV5');
     if (guest) {
         guest = guest.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     }
-    guest = guest ? guest + ' dan pasangan' : 'Terundang dan pasangan';
     var guestElements = document.querySelectorAll('#guest-name');
     guestElements.forEach(element => {
-        element.textContent = guest;
+        element.textContent = guest ? guest + ' dan keluarga/pasangan' : 'Kamu dan keluarga/pasangan';
     });
 </script>
 <script>
@@ -1036,9 +1035,9 @@ gtag('config', 'G-14K2D9YSV5');
         }
         return null;
     }
-    function handleInvite(urlParams) {
-        const guest = urlParams.get('guest');
-        const secret = urlParams.get('secret');
+    function handleInvite(guest, secret) {
+        // const guest = urlParams.get('guest');
+        // const secret = urlParams.get('secret');
         const inviteType = validateInvite(guest, secret);
         if (inviteType === 'inviteType1') {
             console.log('if (inviteType === inviteType1) {')
@@ -1052,7 +1051,8 @@ gtag('config', 'G-14K2D9YSV5');
         console.log('hello world!');
         console.log('inviteType:', inviteType);
     }
-    handleInvite(urlParams);
+    const secret = urlParams.get('secret');
+    handleInvite(guest, secret);
 </script>
         <!--end::Javascript-->
     </body>
