@@ -202,12 +202,12 @@
     </div>
     <div class="py-10 px-10">
         <div class="text-center text-light" id="message-quote" data-aos="fade-up">
-            <em>وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ<br />
+            <em>وَمِنْ كُلِّ شَيْءٍ خَلَقْنَا زَوْجَيْنِ لَعَلَّكُمْ تَذَكَّرُوْنَ<br />
 <br />
-And among the signs of His greatness is that He created for you spouses from your own kind, so that you may find tranquility and peace in them, and He has placed love and compassion between you. Indeed, in this are truly signs for those who reflect.</em>
+Dan segala sesuatu Kami ciptakan berpasang-pasangan supaya kamu mengingat kebesaran Allah.</em>
         </div>
         <div class="fw-bold text-light text-center pt-5" data-aos="fade-up">
-            Ar Rum: 21
+            Adz Dzariyyat: 49
         </div>
     </div>
 </div>
@@ -1001,15 +1001,21 @@ gtag('config', 'G-14K2D9YSV5');
 </script>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var guest = urlParams.get('invitee');
+    var guest = urlParams.get('guest');
     if (guest) {
         guest = guest.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     }
     guest = guest ? guest + ' dan pasangan' : 'Invited and partner';
     var guestElements = document.querySelectorAll('#guest-name');
-    guestElements.forEach(element => {
-        element.textContent = guest ? guest + ' dan keluarga/pasangan' : 'Kamu dan keluarga/pasangan';
-    });
+    if (guest && (guest.includes('Keluarga') || guest.includes('Tongkrongan'))) {
+        guestElements.forEach(element => {
+            element.textContent = guest;
+        });
+    } else {
+        guestElements.forEach(element => {
+            element.textContent = guest ? guest + ' dan keluarga/pasangan' : 'Kamu dan keluarga/pasangan';
+        });
+    }
 </script>
 <script>
     const seeds = {
