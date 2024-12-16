@@ -154,7 +154,7 @@
                                     document.getElementById('guest-name').textContent = guest ? guest : 'Guest';
                                 </script> -->
                                                                 <button type="button" data-bs-dismiss="modal" class="btn btn-default bg-white text-dark mt-5 mb-10 text-uppercase btn-sm"
-                                                                onclick=""
+                                                               
                                                                 ><i class="bi bi-envelope-open text-dark"></i> Open Invitation</button>
                             </div>
                         </div>
@@ -604,7 +604,7 @@ And We created everything in pairs so that you may reflect on the greatness of A
                 </div>
                 <div class="pb-5 fs-9 text-danger">Beberapa browser tidak mendukung fitur auto play YouTube. Gunakan browser seperti Chrome, Firefox, dsb.</div>
 <div id="player" class="h-250px w-100 rounded" ></div>
-                <button class="btn btn-icon btn-lg btn-light-primary btn-circle" id="btn-play" onclick="playVideo(true);">
+                <button class="btn btn-icon btn-lg btn-light-primary btn-circle" id="btn-play" onclick="playVideo(false);">
                     <span class="bi bi-play-fill fs-2x"></span>
                 </button>
                 <button class="btn btn-icon btn-lg btn-light-primary btn-circle" id="btn-pause" onclick="pauseVideo();">
@@ -905,20 +905,20 @@ gtag('config', 'G-14K2D9YSV5');
     var player;
     var videoId="K0KybecKZYg";
     var playAt = parseInt("0");
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: videoId,
-          playerVars: {
-            'playsinline': 1
-          },
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-    }
+    // function onYouTubeIframeAPIReady() {
+    //     player = new YT.Player('player', {
+    //       height: '390',
+    //       width: '640',
+    //       videoId: videoId,
+    //       playerVars: {
+    //         'playsinline': 1
+    //       },
+    //       events: {
+    //         'onReady': onPlayerReady,
+    //         'onStateChange': onPlayerStateChange
+    //       }
+    //     });
+    // }
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
         // event.target.playVideo();
