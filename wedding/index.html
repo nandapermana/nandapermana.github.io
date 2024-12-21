@@ -1067,14 +1067,42 @@ gtag('config', 'G-14K2D9YSV5');
             for (let i = 0; i < elementIds.length; i++) {
                 const elementId = elementIds[i];
                 var elements = document.querySelectorAll(`#${elementId}`);
+
+                let imgPath = `/img/poto/${inviteType}/${elementId}.jpg`;
+                console.log(imgPath);
+
+                fetch(imgPath)
+                    .then(response => {
+                        console.log(response);
+                        if (!response.ok) {
+                            imgPath = imgPath.replace('.jpg', '.png');
+                            console.log(imgPath);
+                            elements.forEach((element) => {
+                            console.log('keganti');
+                                if (elementKey === 'elementIdsSrc') {
+                                    // element.src = `/img/poto/${inviteType}/${elementId}`;
+                                    element.src = imgPath;
+                                } else if (elementKey === 'elementIdsDataSrc') {
+                                    element.setAttribute('data-src', imgPath);
+                                } else if (elementKey === 'elementIdsStyleBackgroundImage') {
+                                    element.style.backgroundImage = `url('${imgPath}')`;
+                                }
+                            });
+                        }
+                    })
+                    .catch(() => {
+                        imgPath = imgPath.replace('.jpg', '.png');
+                    });
+
                 elements.forEach((element) => {
+                    console.log('keganti');
                     if (elementKey === 'elementIdsSrc') {
-                        element.src = `/img/poto/${inviteType}/${elementId}`;
-                        console.log(element.src);
+                        // element.src = `/img/poto/${inviteType}/${elementId}`;
+                        element.src = imgPath;
                     } else if (elementKey === 'elementIdsDataSrc') {
-                        element.setAttribute('data-src', `/img/poto/${inviteType}/${elementId}`);
+                        element.setAttribute('data-src', imgPath);
                     } else if (elementKey === 'elementIdsStyleBackgroundImage') {
-                        element.style.backgroundImage = `url('/img/poto/${inviteType}/${elementId}')`;
+                        element.style.backgroundImage = `url('${imgPath}')`;
                     }
                 });
             }
