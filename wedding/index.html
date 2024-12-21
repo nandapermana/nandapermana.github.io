@@ -1026,16 +1026,18 @@ gtag('config', 'G-14K2D9YSV5');
         return CryptoJS.MD5(string).toString();
     }
     function validateInvite(guest, secret) {
+        var inviteMatch = null;
         for (const [inviteName, seed] of Object.entries(seeds)) {
             const hash = md5(guest + seed);
-            console.log(hash);
+            console.log(hash)
+
             if (hash === secret) {
-                return inviteName;
+                inviteMatch = inviteName;
             }
         }
-        return null;
+        return inviteMatch;
     }
-    function handleInvite(guest, secret) {
+    async function handleInvite(guest, secret) {
         const inviteType = validateInvite(guest, secret);
         
         if (!inviteType) {
@@ -1062,43 +1064,34 @@ gtag('config', 'G-14K2D9YSV5');
             ],
         }
 
+        async function handleImage(elementId) {
+            let imgPath = `/img/poto/${inviteType}/${elementId}.jpg`;
+
+            try {
+                const response = await fetch(imgPath);
+
+                if (!response.ok) {
+                    imgPath = imgPath.replace('.jpg', '.png');
+                }
+            } catch (error) {
+                imgPath = imgPath.replace('.jpg', '.png');
+            }
+
+            return imgPath;
+        }
+
+
         for (const [elementKey, elementIds] of Object.entries(elementDict)) {
-            console.log(elementKey, elementIds);
             for (let i = 0; i < elementIds.length; i++) {
                 const elementId = elementIds[i];
                 var elements = document.querySelectorAll(`#${elementId}`);
 
                 let imgPath = `/img/poto/${inviteType}/${elementId}.jpg`;
-                console.log(imgPath);
-
-                fetch(imgPath)
-                    .then(response => {
-                        console.log(response);
-                        if (!response.ok) {
-                            imgPath = imgPath.replace('.jpg', '.png');
-                            console.log(imgPath);
-                            elements.forEach((element) => {
-                            console.log('keganti');
-                                if (elementKey === 'elementIdsSrc') {
-                                    // element.src = `/img/poto/${inviteType}/${elementId}`;
-                                    element.src = imgPath;
-                                } else if (elementKey === 'elementIdsDataSrc') {
-                                    element.setAttribute('data-src', imgPath);
-                                } else if (elementKey === 'elementIdsStyleBackgroundImage') {
-                                    element.style.backgroundImage = `url('${imgPath}')`;
-                                }
-                            });
-                        }
-                    })
-                    .catch(() => {
-                        imgPath = imgPath.replace('.jpg', '.png');
-                    });
+                const imgPathFixed = await handleImage(elementId);
 
                 elements.forEach((element) => {
-                    console.log('keganti');
                     if (elementKey === 'elementIdsSrc') {
-                        // element.src = `/img/poto/${inviteType}/${elementId}`;
-                        element.src = imgPath;
+                        element.src = imgPathFixed;
                     } else if (elementKey === 'elementIdsDataSrc') {
                         element.setAttribute('data-src', imgPath);
                     } else if (elementKey === 'elementIdsStyleBackgroundImage') {
