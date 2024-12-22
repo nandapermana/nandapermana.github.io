@@ -1035,7 +1035,7 @@ gtag('config', 'G-14K2D9YSV5');
             return;
         }
 
-        if (['inviteType1', 'inviteType2'].indexOf(inviteType) !== -1) {
+        if (['inviteType1', 'inviteType2'].includes(inviteType)) {
             var elementAkad = document.getElementById('varAkad');
             elementAkad.style.display = 'block';
         }
